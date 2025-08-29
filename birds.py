@@ -13,9 +13,11 @@ import json
 from typing import Dict
 
 import pandas as pd
+import requests
 
 DATA_FILE = Path("data/Indiana_Birds.txt")
 JSON_FILE = DATA_FILE.with_suffix(".json")
+MEDIA_CACHE_FILE = Path("data/media_cache.json")
 
 
 def load_mapping() -> Dict[str, str]:
@@ -39,10 +41,12 @@ def load_mapping() -> Dict[str, str]:
 
 
 def load_items_df() -> pd.DataFrame:
-    """Build a DataFrame of birds with image URLs.
+    """Build a DataFrame of birds.
 
     The current implementation assigns all birds to a single group because the
     source mapping does not provide family information in a structured form.
+    ``get_media`` can be used to retrieve an embed snippet for any species code
+    when needed.
     """
 
     mapping = load_mapping()
@@ -51,11 +55,59 @@ def load_items_df() -> pd.DataFrame:
             "species_code": code,
             "common_name": name,
             "group_id": "birds",
-            "license": "Unknown",
-            "credit": "Unknown",
-            "image_url": f"https://cdn.download.ams.birds.cornell.edu/api/v1/asset/{code}/320",
         }
         for code, name in mapping.items()
     ]
     return pd.DataFrame(rows)
 
+
+def _load_cache() -> Dict[str, Dict[str, str]]:
+    if MEDIA_CACHE_FILE.exists():
+        return json.loads(MEDIA_CACHE_FILE.read_text())
+    return {}
+
+
+_MEDIA_CACHE = _load_cache()
+
+
+def get_media(code: str) -> Dict[str, str]:
+    """Return embed HTML and attribution for *code* using eBird's API.
+
+    Results are cached on disk so species only require a network request once.
+    When the API is unreachable or returns unexpected data, we fall back to
+    placeholders so the app can still function.
+    """
+
+    if code in _MEDIA_CACHE:
+        return _MEDIA_CACHE[code]
+
+    try:
+        search_resp = requests.get(
+            "https://search.macaulaylibrary.org/api/v1/search",
+            params={"taxonCode": code, "mediaType": "photo", "limit": 1, "sort": "rating_rank_desc"},
+            timeout=10,
+        )
+        search_resp.raise_for_status()
+        search_data = search_resp.json()
+        result = search_data.get("results", [{}])[0]
+        asset_id = result.get("assetId")
+        license_code = result.get("licenseCode", "Unknown")
+        credit = result.get("userDisplayName", "Unknown")
+
+        embed_resp = requests.get(
+            f"https://media.ebird.org/catalog/oembed?url=https://macaulaylibrary.org/asset/{asset_id}",
+            timeout=10,
+        )
+        embed_resp.raise_for_status()
+        embed_html = embed_resp.json().get("html", "")
+
+        info = {"embed_html": embed_html, "license": license_code, "credit": credit}
+    except Exception:
+        info = {"embed_html": "", "license": "Unknown", "credit": "Unknown"}
+
+    _MEDIA_CACHE[code] = info
+    try:
+        MEDIA_CACHE_FILE.write_text(json.dumps(_MEDIA_CACHE, indent=2))
+    except Exception:
+        pass
+    return info

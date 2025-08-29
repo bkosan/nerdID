@@ -1,21 +1,17 @@
-import hashlib
-import io
 import random
 import time
 from datetime import date, datetime
 from pathlib import Path
 
 import pandas as pd
-import requests
 import sqlite3
 import streamlit as st
-from PIL import Image
+import streamlit.components.v1 as components
 
 import sr
-from birds import load_items_df
+from birds import load_items_df, get_media
 
 REVIEWS_CSV = Path("data/reviews.csv")
-CACHE_DIR = Path("cache")
 DB_PATH = Path("data/sr_state.sqlite")
 
 
@@ -41,9 +37,7 @@ def load_state(conn, code):
         (code,),
     )
     row = cur.fetchone()
-    if row:
-        reps, interval, easiness, due_at = row
-        return {
+@@ -47,121 +43,109 @@ def load_state(conn, code):
             "reps": reps,
             "interval_days": interval,
             "easiness": easiness,
@@ -69,24 +63,6 @@ def save_state(conn, code, state):
         ),
     )
     conn.commit()
-
-
-def get_image(url: str):
-    CACHE_DIR.mkdir(exist_ok=True)
-    h = hashlib.md5(url.encode()).hexdigest() + ".jpg"
-    path = CACHE_DIR / h
-    if path.exists():
-        return Image.open(path)
-    try:
-        resp = requests.get(url, timeout=10)
-        resp.raise_for_status()
-        img = Image.open(io.BytesIO(resp.content)).convert("RGB")
-        img.save(path, format="JPEG")
-        return img
-    except Exception:
-        return None
-
-
 def pick_item(df, conn):
     today = date.today().isoformat()
     due_codes = [
@@ -143,9 +119,9 @@ def main():
     options = build_options(df, item)
     correct_index = int(options.index[options.species_code == item.species_code][0])
 
-    img = get_image(item.image_url)
-    if img:
-        st.image(img, caption=f"{item['license']} — {item['credit']}")
+    media = get_media(item.species_code)
+    if media["embed_html"]:
+        components.html(media["embed_html"], height=300)
     else:
         st.write("Image unavailable")
 
@@ -171,11 +147,3 @@ def main():
 
     if REVIEWS_CSV.exists():
         df_rev = pd.read_csv(REVIEWS_CSV)
-        if not df_rev.empty:
-            st.sidebar.metric("Overall accuracy", f"{df_rev['correct'].mean():.0%}")
-            acc = df_rev.groupby("species_code")["correct"].mean()
-            st.sidebar.bar_chart(acc)
-
-
-if __name__ == "__main__":
-    main()
