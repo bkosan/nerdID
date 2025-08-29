@@ -117,7 +117,6 @@ def build_options(df: pd.DataFrame, item: pd.Series, n: int = 4) -> pd.DataFrame
     options = pd.concat([group, filler]).sample(n).reset_index(drop=True)
     return options
 
-
 def rerun_app() -> None:
     """Rerun the Streamlit app using the available API.
 
@@ -130,7 +129,6 @@ def rerun_app() -> None:
         st.rerun()
     else:  # pragma: no cover - exercised in a test with a stub
         st.experimental_rerun()
-
 
 def main():
     df = pd.read_csv(DATA_CSV)
