@@ -1,5 +1,8 @@
 import pandas as pd
-from app import build_options
+from types import SimpleNamespace
+
+import app
+from app import build_options, rerun_app
 
 
 def test_build_options_adds_fallback_species():
@@ -15,3 +18,32 @@ def test_build_options_adds_fallback_species():
     assert len(options) == 4
     assert item.species_code in options.species_code.values
     assert options["species_code"].is_unique
+
+
+def test_rerun_app_prefers_new_api(monkeypatch):
+    calls = []
+
+    def new_rerun():
+        calls.append("new")
+
+    def old_rerun():
+        calls.append("old")
+
+    dummy = SimpleNamespace(rerun=new_rerun, experimental_rerun=old_rerun)
+    monkeypatch.setattr(app, "st", dummy)
+
+    rerun_app()
+    assert calls == ["new"]
+
+
+def test_rerun_app_falls_back_to_experimental(monkeypatch):
+    calls = []
+
+    def old_rerun():
+        calls.append("old")
+
+    dummy = SimpleNamespace(experimental_rerun=old_rerun)
+    monkeypatch.setattr(app, "st", dummy)
+
+    rerun_app()
+    assert calls == ["old"]

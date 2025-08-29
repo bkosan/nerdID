@@ -117,6 +117,18 @@ def build_options(df: pd.DataFrame, item: pd.Series, n: int = 4) -> pd.DataFrame
     options = pd.concat([group, filler]).sample(n).reset_index(drop=True)
     return options
 
+def rerun_app() -> None:
+    """Rerun the Streamlit app using the available API.
+
+    Streamlit renamed ``st.experimental_rerun`` to ``st.rerun`` in newer
+    versions. This helper calls the preferred ``st.rerun`` when present while
+    remaining compatible with older versions.
+    """
+
+    if hasattr(st, "rerun"):
+        st.rerun()
+    else:  # pragma: no cover - exercised in a test with a stub
+        st.experimental_rerun()
 
 def main():
     df = pd.read_csv(DATA_CSV)
@@ -149,7 +161,7 @@ def main():
         new_state = sr.schedule(state, grade)
         save_state(conn, item.species_code, new_state)
         st.session_state.start_time = time.time()
-        st.experimental_rerun()
+        rerun_app()
 
     if REVIEWS_CSV.exists():
         df_rev = pd.read_csv(REVIEWS_CSV)
