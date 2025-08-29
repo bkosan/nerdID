@@ -24,6 +24,16 @@ python prep.py validate data/items.csv
 python prep.py cache --csv data/items.csv --dir cache
 ```
 
+## Building state species list
+
+Download the eBird/Clements v2024 taxonomy CSV and set the `EBIRD_API_KEY`
+environment variable to your eBird API token. Then generate a species list for
+Indiana with:
+
+```powershell
+python prep.py species --taxonomy path\to\ebird_taxonomy_v2024.csv --region US-IN --out data/indiana_species.csv
+```
+
 ## Tests
 
 ```powershell

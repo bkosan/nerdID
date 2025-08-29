@@ -47,6 +47,34 @@ def cmd_cache(csv_path: str, out_dir: str) -> None:
             print(f"failed {url}: {e}")
 
 
+def cmd_species(taxonomy_csv: str, region: str, out_csv: str) -> None:
+    api_key = os.environ.get("EBIRD_API_KEY")
+    if not api_key:
+        raise SystemExit("EBIRD_API_KEY environment variable is required")
+
+    resp = requests.get(
+        f"https://api.ebird.org/v2/product/spplist/{region}",
+        headers={"X-eBirdApiToken": api_key},
+        timeout=10,
+    )
+    resp.raise_for_status()
+    codes = resp.json()
+
+    tax = pd.read_csv(taxonomy_csv)
+    code_col = None
+    for col in ("species_code", "speciesCode", "SPECIES_CODE", "speciescode"):
+        if col in tax.columns:
+            code_col = col
+            break
+    if code_col is None:
+        raise SystemExit("Taxonomy CSV missing species code column")
+
+    subset = tax[tax[code_col].isin(codes)]
+    subset = subset.set_index(code_col).loc[codes].reset_index()
+    subset.to_csv(out_csv, index=False)
+    print(f"Wrote {len(subset)} rows to {out_csv}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -55,11 +83,17 @@ def main(argv=None):
     p_cache = sub.add_parser("cache")
     p_cache.add_argument("--csv", required=True)
     p_cache.add_argument("--dir", required=True)
+    p_species = sub.add_parser("species")
+    p_species.add_argument("--taxonomy", required=True)
+    p_species.add_argument("--region", required=True)
+    p_species.add_argument("--out", required=True)
     args = parser.parse_args(argv)
     if args.cmd == "validate":
         cmd_validate(args.csv)
     elif args.cmd == "cache":
         cmd_cache(args.csv, args.dir)
+    elif args.cmd == "species":
+        cmd_species(args.taxonomy, args.region, args.out)
 
 
 if __name__ == "__main__":
