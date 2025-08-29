@@ -1,0 +1,15 @@
+﻿# Python / venv
+.venv/
+__pycache__/
+*.pyc
+
+# App artifacts
+cache/
+*.sqlite
+*.sqlite3
+*.db
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
