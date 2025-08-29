@@ -111,4 +111,3 @@ def get_media(code: str) -> Dict[str, str]:
     except Exception:
         pass
     return info
-

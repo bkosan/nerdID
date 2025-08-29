@@ -37,9 +37,7 @@ def load_state(conn, code):
         (code,),
     )
     row = cur.fetchone()
-    if row:
-        reps, interval, easiness, due_at = row
-        return {
+@@ -47,121 +43,109 @@ def load_state(conn, code):
             "reps": reps,
             "interval_days": interval,
             "easiness": easiness,
@@ -149,11 +147,3 @@ def main():
 
     if REVIEWS_CSV.exists():
         df_rev = pd.read_csv(REVIEWS_CSV)
-        if not df_rev.empty:
-            st.sidebar.metric("Overall accuracy", f"{df_rev['correct'].mean():.0%}")
-            acc = df_rev.groupby("species_code")["correct"].mean()
-            st.sidebar.bar_chart(acc)
-
-
-if __name__ == "__main__":
-    main()
