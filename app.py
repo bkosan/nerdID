@@ -12,8 +12,8 @@ import streamlit as st
 from PIL import Image
 
 import sr
+from birds import load_items_df
 
-DATA_CSV = Path("data/items.csv")
 REVIEWS_CSV = Path("data/reviews.csv")
 CACHE_DIR = Path("cache")
 DB_PATH = Path("data/sr_state.sqlite")
@@ -131,7 +131,7 @@ def rerun_app() -> None:
         st.experimental_rerun()
 
 def main():
-    df = pd.read_csv(DATA_CSV)
+    df = load_items_df()
     conn = get_conn()
     item = pick_item(df, conn)
     options = build_options(df, item)
