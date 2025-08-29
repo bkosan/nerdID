@@ -117,6 +117,7 @@ def build_options(df: pd.DataFrame, item: pd.Series, n: int = 4) -> pd.DataFrame
     options = pd.concat([group, filler]).sample(n).reset_index(drop=True)
     return options
 
+
 def rerun_app() -> None:
     """Rerun the Streamlit app using the available API.
 
@@ -130,12 +131,20 @@ def rerun_app() -> None:
     else:  # pragma: no cover - exercised in a test with a stub
         st.experimental_rerun()
 
+
+
+
 def main():
     df = load_items_df()
     conn = get_conn()
-    item = pick_item(df, conn)
-    options = build_options(df, item)
-    correct_index = int(options.index[options.species_code == item.species_code][0])
+
+    if "item" not in st.session_state:
+        st.session_state.item = pick_item(df, conn)
+        st.session_state.options = build_options(df, st.session_state.item)
+        st.session_state.start_time = time.time()
+
+    item = st.session_state.item
+    options = st.session_state.options
 
     img = get_image(item.image_url)
     if img:
@@ -143,16 +152,20 @@ def main():
     else:
         st.write("Image unavailable")
 
-    if "start_time" not in st.session_state:
-        st.session_state.start_time = time.time()
-    choice = st.radio("Which bird is this?", options["common_name"].tolist())
+    choice = st.radio(
+        "Which bird is this?",
+        options["common_name"].tolist(),
+        index=None,
+        key="choice",
+    )
 
     if st.button("Submit"):
         elapsed = int((time.time() - st.session_state.start_time) * 1000)
-        correct = choice == item.common_name
+        selected = st.session_state.choice
+        correct = selected == item.common_name
         st.write("Correct!" if correct else f"Nope, it was {item.common_name}")
         with REVIEWS_CSV.open("a") as f:
-            chosen_code = options.loc[options.common_name == choice, "species_code"].iloc[0]
+            chosen_code = options.loc[options.common_name == selected, "species_code"].iloc[0]
             f.write(
                 f"{datetime.utcnow().isoformat()},{item.species_code},{chosen_code},{int(correct)},{elapsed}\n"
             )
@@ -160,7 +173,10 @@ def main():
         state = load_state(conn, item.species_code)
         new_state = sr.schedule(state, grade)
         save_state(conn, item.species_code, new_state)
+        st.session_state.item = pick_item(df, conn)
+        st.session_state.options = build_options(df, st.session_state.item)
         st.session_state.start_time = time.time()
+        st.session_state.choice = None
         rerun_app()
 
     if REVIEWS_CSV.exists():
