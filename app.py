@@ -98,15 +98,31 @@ def pick_item(df, conn):
     return pool.sample(1).iloc[0]
 
 
+def build_options(df: pd.DataFrame, item: pd.Series, n: int = 4) -> pd.DataFrame:
+    """Return *n* answer options including the correct species.
+
+    If the item's group does not contain enough species to provide all
+    options, the remaining slots are filled with random species from other
+    groups. The returned DataFrame is shuffled and contains one row per
+    species.
+    """
+
+    group = df[df.group_id == item.group_id].drop_duplicates("species_code")
+    if len(group) >= n:
+        return group.sample(n).reset_index(drop=True)
+
+    others = df[df.group_id != item.group_id].drop_duplicates("species_code")
+    needed = n - len(group)
+    filler = others.sample(needed)
+    options = pd.concat([group, filler]).sample(n).reset_index(drop=True)
+    return options
+
+
 def main():
     df = pd.read_csv(DATA_CSV)
     conn = get_conn()
     item = pick_item(df, conn)
-    group = df[df.group_id == item.group_id].drop_duplicates("species_code")
-    if len(group) < 4:
-        st.error("Need at least 4 species in group")
-        st.stop()
-    options = group.sample(4).reset_index(drop=True)
+    options = build_options(df, item)
     correct_index = int(options.index[options.species_code == item.species_code][0])
 
     img = get_image(item.image_url)
