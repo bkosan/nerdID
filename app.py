@@ -132,6 +132,8 @@ def rerun_app() -> None:
         st.experimental_rerun()
 
 
+
+
 def main():
     df = pd.read_csv(DATA_CSV)
     conn = get_conn()
