@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from types import SimpleNamespace
 
 import app
@@ -18,6 +19,20 @@ def test_build_options_adds_fallback_species():
     assert len(options) == 4
     assert item.species_code in options.species_code.values
     assert options["species_code"].is_unique
+
+
+def test_build_options_keeps_correct_when_group_large():
+    np.random.seed(0)
+    df = pd.DataFrame(
+        [
+            {"species_code": s, "common_name": s.upper(), "group_id": 1, "image_url": "", "license": "", "credit": ""}
+            for s in list("abcde")
+        ]
+    )
+    item = df.iloc[0]
+    options = build_options(df, item)
+    assert item.species_code in options.species_code.values
+    assert len(options) == 4
 
 
 def test_rerun_app_prefers_new_api(monkeypatch):

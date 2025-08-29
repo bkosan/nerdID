@@ -12,8 +12,8 @@ import streamlit as st
 from PIL import Image
 
 import sr
+from birds import load_items_df
 
-DATA_CSV = Path("data/items.csv")
 REVIEWS_CSV = Path("data/reviews.csv")
 CACHE_DIR = Path("cache")
 DB_PATH = Path("data/sr_state.sqlite")
@@ -107,14 +107,20 @@ def build_options(df: pd.DataFrame, item: pd.Series, n: int = 4) -> pd.DataFrame
     species.
     """
 
+    item_df = item.to_frame().T
     group = df[df.group_id == item.group_id].drop_duplicates("species_code")
-    if len(group) >= n:
-        return group.sample(n).reset_index(drop=True)
+    group = group[group.species_code != item.species_code]
 
-    others = df[df.group_id != item.group_id].drop_duplicates("species_code")
-    needed = n - len(group)
-    filler = others.sample(needed)
-    options = pd.concat([group, filler]).sample(n).reset_index(drop=True)
+    needed = n - 1
+    from_group = group.sample(min(len(group), needed)) if not group.empty else pd.DataFrame(columns=df.columns)
+    needed -= len(from_group)
+    if needed > 0:
+        others = df[df.group_id != item.group_id].drop_duplicates("species_code")
+        from_others = others.sample(min(len(others), needed)) if not others.empty else pd.DataFrame(columns=df.columns)
+    else:
+        from_others = pd.DataFrame(columns=df.columns)
+
+    options = pd.concat([item_df, from_group, from_others]).sample(frac=1).reset_index(drop=True)
     return options
 
 def rerun_app() -> None:
@@ -131,7 +137,7 @@ def rerun_app() -> None:
         st.experimental_rerun()
 
 def main():
-    df = pd.read_csv(DATA_CSV)
+    df = load_items_df()
     conn = get_conn()
     item = pick_item(df, conn)
     options = build_options(df, item)
