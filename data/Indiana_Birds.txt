@@ -1,0 +1,623 @@
+# Indiana Birds - eBird Species Codes to Common Names
+# This mapping connects eBird taxonomic codes to their common bird names
+# Format: "ebirdCode": "Common Name"
+
+indiana_birds_mapping = {
+    # Geese, Swans, and Ducks
+    "bbwduc": "Black-bellied Whistling-Duck",
+    "fuwduc": "Fulvous Whistling-Duck",
+    "bahgoo": "Bar-headed Goose",
+    "snogoo": "Snow Goose",
+    "rosgoo": "Ross's Goose",
+    "sxrgoo1": "Snow x Ross's Goose (hybrid)",
+    "gragoo": "Graylag Goose",
+    "swagoo1": "Swan Goose (Domestic type)",
+    "x00776": "Domestic Goose sp.",
+    "gwfgoo": "Greater White-fronted Goose",
+    "x00627": "Domestic x Canada Goose (hybrid)",
+    "brant": "Brant",
+    "bargoo": "Barnacle Goose",
+    "cacgoo1": "Cackling Goose",
+    "x00414": "Cackling/Canada Goose",
+    "x00416": "Cackling Goose x Canada Goose (hybrid)",
+    "cangoo": "Canada Goose",
+    "swagoo3": "Swan Goose",
+    "x00415": "Canada Goose (Domestic type)",
+    "x00758": "Barnacle x Canada Goose (hybrid)",
+    "x00759": "Graylag x Canada Goose (hybrid)",
+    "mutswa": "Mute Swan",
+    "blkswa": "Black Swan",
+    "truswa": "Trumpeter Swan",
+    "tunswa": "Tundra Swan",
+    "whoswa": "Whooper Swan",
+    "egygoo": "Egyptian Goose",
+    "rudshe": "Ruddy Shelduck",
+    "musduc": "Muscovy Duck",
+    "wooduc": "Wood Duck",
+    "manduc": "Mandarin Duck",
+    "buwtea": "Blue-winged Teal",
+    "cintea": "Cinnamon Teal",
+    "bwxtea1": "Blue-winged x Cinnamon Teal (hybrid)",
+    "norsho": "Northern Shoveler",
+    "x00629": "Cinnamon Teal x Northern Shoveler (hybrid)",
+    "gadwal": "Gadwall",
+    "x00457": "Gadwall x Mallard (hybrid)",
+    "eurwig": "Eurasian Wigeon",
+    "amewig": "American Wigeon",
+    "x00421": "American Wigeon x Mallard (hybrid)",
+    "mallar3": "Mallard",
+    "mdxmal1": "Mallard (Domestic type) x Mallard",
+    "x00205": "Mallard (Domestic type)",
+    "x00420": "Mallard x Northern Pintail (hybrid)",
+    "x00611": "Mallard x American Black Duck (hybrid)",
+    "ambduc": "American Black Duck",
+    "x00004": "American Black Duck x Mallard",
+    "motduc": "Mottled Duck",
+    "x00422": "Mottled Duck x Mallard (hybrid)",
+    "norpin": "Northern Pintail",
+    "gnwtea": "Green-winged Teal",
+    "x00673": "Green-winged Teal (Eurasian)",
+    "canvas": "Canvasback",
+    "redhea": "Redhead",
+    "rinduc": "Ring-necked Duck",
+    "x00679": "Redhead x Ring-necked Duck (hybrid)",
+    "gresca": "Greater Scaup",
+    "lessca": "Lesser Scaup",
+    "kineid": "King Eider",
+    "harduc": "Harlequin Duck",
+    "sursco": "Surf Scoter",
+    "whwsco2": "White-winged Scoter",
+    "blksco2": "Black Scoter",
+    "lotduc": "Long-tailed Duck",
+    "buffle": "Bufflehead",
+    "comgol": "Common Goldeneye",
+    "x00655": "Common x Barrow's Goldeneye (hybrid)",
+    "bargol": "Barrow's Goldeneye",
+    "hoomer": "Hooded Merganser",
+    "x00425": "Hooded Merganser x Common Goldeneye (hybrid)",
+    "commer": "Common Merganser",
+    "rebmer": "Red-breasted Merganser",
+    "rudduc": "Ruddy Duck",
+    
+    # Gallinaceous Birds
+    "helgui": "Helmeted Guineafowl",
+    "norbob": "Northern Bobwhite",
+    "calqua": "California Quail",
+    "wiltur": "Wild Turkey",
+    "rufgro": "Ruffed Grouse",
+    "grpchi": "Greater Prairie-Chicken",
+    "grypar": "Gray Partridge",
+    "golphe": "Golden Pheasant",
+    "rinphe1": "Ring-necked Pheasant",
+    "compea": "Common Peafowl",
+    "redjun": "Red Junglefowl",
+    "chukar": "Chukar",
+    
+    # Pigeons and Doves
+    "rocpig": "Rock Pigeon",
+    "batpig1": "Band-tailed Pigeon",
+    "eucdov": "Eurasian Collared-Dove",
+    "afcdov1": "African Collared-Dove",
+    "cogdov": "Common Ground Dove",
+    "whwdov": "White-winged Dove",
+    "moudov": "Mourning Dove",
+    
+    # Cuckoos
+    "grbani": "Groove-billed Ani",
+    "yebcuc": "Yellow-billed Cuckoo",
+    "bkbcuc": "Black-billed Cuckoo",
+    
+    # Nightjars and Allies
+    "comnig": "Common Nighthawk",
+    "chwwid": "Chuck-will's-widow",
+    "easwpw1": "Eastern Whip-poor-will",
+    
+    # Swifts
+    "chiswi": "Chimney Swift",
+    "grnvie1": "Green Violet-ear",
+    
+    # Hummingbirds
+    "rthhum": "Ruby-throated Hummingbird",
+    "bkchum": "Black-chinned Hummingbird",
+    "annhum": "Anna's Hummingbird",
+    "calhum": "Calliope Hummingbird",
+    "x00619": "Selasphorus sp.",
+    "rufhum": "Rufous Hummingbird",
+    
+    # Rails and Coots
+    "kinrai4": "King Rail",
+    "virrai": "Virginia Rail",
+    "sora": "Sora",
+    "comgal1": "Common Gallinule",
+    "y00475": "Common Moorhen",
+    "purgal2": "Purple Gallinule",
+    "yelrai": "Yellow Rail",
+    "blkrai": "Black Rail",
+    "limpki": "Limpkin",
+    
+    # Cranes
+    "sancra": "Sandhill Crane",
+    "comcra": "Common Crane",
+    "x00657": "Sandhill x Common Crane (hybrid)",
+    "hoocra1": "Hooded Crane",
+    "whocra": "Whooping Crane",
+    
+    # Stilts and Avocets
+    "bknsti": "Black-necked Stilt",
+    "ameavo": "American Avocet",
+    
+    # Plovers
+    "bkbplo": "Black-bellied Plover",
+    "amgplo": "American Golden-Plover",
+    "killde": "Killdeer",
+    "semplo": "Semipalmated Plover",
+    "pipplo": "Piping Plover",
+    "lessap2": "Lesser Sand-Plover",
+    "wilplo": "Wilson's Plover",
+    "mouplo": "Mountain Plover",
+    "snoplo5": "Snowy Plover",
+    
+    # Sandpipers and Allies
+    "uplsan": "Upland Sandpiper",
+    "whimbr": "Whimbrel",
+    "eskcur": "Eskimo Curlew",
+    "bktgod": "Black-tailed Godwit",
+    "hudgod": "Hudsonian Godwit",
+    "margod": "Marbled Godwit",
+    "shbdow": "Short-billed Dowitcher",
+    "lobdow": "Long-billed Dowitcher",
+    "amewoo": "American Woodcock",
+    "wilsni1": "Wilson's Snipe",
+    "wilpha": "Wilson's Phalarope",
+    "redpha1": "Red Phalarope",
+    "renpha": "Red-necked Phalarope",
+    "sposan": "Spotted Sandpiper",
+    "solsan": "Solitary Sandpiper",
+    "wantat1": "Wandering Tattler",
+    "lesyel": "Lesser Yellowlegs",
+    "willet1": "Willet",
+    "spored": "Spotted Redshank",
+    "greyel": "Greater Yellowlegs",
+    "rudtur": "Ruddy Turnstone",
+    "redkno": "Red Knot",
+    "ruff": "Ruff",
+    "shtsan": "Sharp-tailed Sandpiper",
+    "cursan": "Curlew Sandpiper",
+    "stisan": "Stilt Sandpiper",
+    "rensti": "Red-necked Stint",
+    "bubsan": "Buff-breasted Sandpiper",
+    "sander": "Sanderling",
+    "dunlin": "Dunlin",
+    "pursan": "Purple Sandpiper",
+    "baisan": "Baird's Sandpiper",
+    "whrsan": "White-rumped Sandpiper",
+    "leasan": "Least Sandpiper",
+    "pecsan": "Pectoral Sandpiper",
+    "wessan": "Western Sandpiper",
+    "semsan": "Semipalmated Sandpiper",
+    
+    # Jaegers
+    "lotjae": "Long-tailed Jaeger",
+    "parjae": "Parasitic Jaeger",
+    "pomjae": "Pomarine Jaeger",
+    
+    # Murrelets
+    "lobmur": "Long-billed Murrelet",
+    "thbmur": "Thick-billed Murre",
+    "ancmur": "Ancient Murrelet",
+    
+    # Gulls
+    "litgul": "Little Gull",
+    "rosgul": "Ross's Gull",
+    "bklkit": "Black-legged Kittiwake",
+    "sabgul": "Sabine's Gull",
+    "bongul": "Bonaparte's Gull",
+    "bkhgul": "Black-headed Gull",
+    "laugul": "Laughing Gull",
+    "fragul": "Franklin's Gull",
+    "mewgul2": "Mew Gull",
+    "ribgul": "Ring-billed Gull",
+    "x00616": "Ring-billed x Mew Gull (hybrid)",
+    "kelgul": "Kelp Gull",
+    "amhgul1": "American Herring Gull",
+    "veggul1": "Vega Gull",
+    "kxhgul1": "Kelp x Herring Gull (hybrid)",
+    "gbbgul": "Great Black-backed Gull",
+    "x00047": "Great Black-backed x Herring Gull (hybrid)",
+    "glagul": "Glaucous Gull",
+    "x01131": "Glaucous x Great Black-backed Gull (hybrid)",
+    "x00632": "Glaucous x Herring Gull (hybrid)",
+    "lbbgul": "Lesser Black-backed Gull",
+    "x01134": "Lesser Black-backed x Herring Gull (hybrid)",
+    "calgul": "California Gull",
+    "slbgul": "Slaty-backed Gull",
+    "y00478": "Thayer's Gull",
+    
+    # Skimmer
+    "blkski": "Black Skimmer",
+    
+    # Terns
+    "sooter1": "Sooty Tern",
+    "leater1": "Least Tern",
+    "caster1": "Caspian Tern",
+    "blkter": "Black Tern",
+    "whwter": "White-winged Tern",
+    "forter": "Forster's Tern",
+    "arcter": "Arctic Tern",
+    "comter": "Common Tern",
+    "royter1": "Royal Tern",
+    
+    # Loons
+    "grefla2": "Greater Flamingo",
+    "pibgre": "Pied-billed Grebe",
+    "horgre": "Horned Grebe",
+    "rengre": "Red-necked Grebe",
+    "eargre": "Eared Grebe",
+    "wesgre": "Western Grebe",
+    "retloo": "Red-throated Loon",
+    "pacloo": "Pacific Loon",
+    "comloo": "Common Loon",
+    "yebloo": "Yellow-billed Loon",
+    
+    # Petrels and Shearwaters
+    "barpet": "Barolo Shearwater",
+    
+    # Storks
+    "marsto1": "Marabou Stork",
+    "woosto": "Wood Stork",
+    
+    # Frigatebirds
+    "magfri": "Magnificent Frigatebird",
+    
+    # Boobies and Gannets
+    "norgan": "Northern Gannet",
+    "brnboo": "Brown Booby",
+    
+    # Cormorants and Anhingas
+    "anhing": "Anhinga",
+    "doccor": "Double-crested Cormorant",
+    "neocor": "Neotropic Cormorant",
+    
+    # Ibises and Spoonbills
+    "whiibi": "White Ibis",
+    "gloibi": "Glossy Ibis",
+    "whfibi": "White-faced Ibis",
+    "gxwibi1": "Glossy x White-faced Ibis (hybrid)",
+    "rosspo1": "Roseate Spoonbill",
+    
+    # Herons and Bitterns
+    "amebit": "American Bittern",
+    "leabit": "Least Bittern",
+    "ycnher": "Yellow-crowned Night-Heron",
+    "bcnher": "Black-crowned Night-Heron",
+    "libher": "Little Blue Heron",
+    "triher": "Tricolored Heron",
+    "redegr": "Reddish Egret",
+    "snoegr": "Snowy Egret",
+    "x00615": "Snowy x Little Blue Heron (hybrid)",
+    "grnher": "Green Heron",
+    "categr1": "Cattle Egret",
+    "greegr": "Great Egret",
+    "grbher3": "Great Blue Heron",
+    
+    # Pelicans
+    "amwpel": "American White Pelican",
+    "brnpel": "Brown Pelican",
+    
+    # Vultures
+    "blkvul": "Black Vulture",
+    "turvul": "Turkey Vulture",
+    
+    # Hawks and Eagles
+    "osprey": "Osprey",
+    "whtkit": "White-tailed Kite",
+    "swtkit": "Swallow-tailed Kite",
+    "goleag": "Golden Eagle",
+    "shshaw": "Sharp-shinned Hawk",
+    "coohaw": "Cooper's Hawk",
+    "norgos": "Northern Goshawk",
+    "norhar2": "Northern Harrier",
+    "baleag": "Bald Eagle",
+    "miskit": "Mississippi Kite",
+    "brwhaw": "Broad-winged Hawk",
+    "reshaw": "Red-shouldered Hawk",
+    "swahaw": "Swainson's Hawk",
+    "rethaw": "Red-tailed Hawk",
+    "rolhaw": "Rough-legged Hawk",
+    "x00731": "Red-tailed x Rough-legged Hawk (hybrid)",
+    "ferhaw": "Ferruginous Hawk",
+    
+    # Owls
+    "brnowl": "Barn Owl",
+    "easowl1": "Eastern Screech-Owl",
+    "snoowl1": "Snowy Owl",
+    "grhowl": "Great Horned Owl",
+    "burowl": "Burrowing Owl",
+    "brdowl": "Barred Owl",
+    "loeowl": "Long-eared Owl",
+    "sheowl": "Short-eared Owl",
+    "nswowl": "Northern Saw-whet Owl",
+    
+    # Kingfishers
+    "belkin1": "Belted Kingfisher",
+    
+    # Woodpeckers
+    "yebsap": "Yellow-bellied Sapsucker",
+    "rehwoo": "Red-headed Woodpecker",
+    "rebwoo": "Red-bellied Woodpecker",
+    "bkbwoo": "Black-backed Woodpecker",
+    "dowwoo": "Downy Woodpecker",
+    "haiwoo": "Hairy Woodpecker",
+    "pilwoo": "Pileated Woodpecker",
+    "norfli": "Northern Flicker",
+    "y00678": "Northern Flicker (Yellow-shafted)",
+    
+    # Falcons
+    "amekes": "American Kestrel",
+    "merlin": "Merlin",
+    "gyrfal": "Gyrfalcon",
+    "perfal": "Peregrine Falcon",
+    "prafal": "Prairie Falcon",
+    
+    # Parrots
+    "cockat": "Cockatiel",
+    "budger": "Budgerigar",
+    "monpar": "Monk Parakeet",
+    
+    # Flycatchers
+    "olsfly": "Olive-sided Flycatcher",
+    "wewpew": "Western Wood-Pewee",
+    "eawpew": "Eastern Wood-Pewee",
+    "yebfly": "Yellow-bellied Flycatcher",
+    "acafly": "Acadian Flycatcher",
+    "aldfly": "Alder Flycatcher",
+    "wilfly": "Willow Flycatcher",
+    "leafly": "Least Flycatcher",
+    "easpho": "Eastern Phoebe",
+    "saypho": "Say's Phoebe",
+    "verfly": "Vermilion Flycatcher",
+    "grcfly": "Great Crested Flycatcher",
+    "grekis": "Great Kiskadee",
+    "weskin": "Western Kingbird",
+    "easkin": "Eastern Kingbird",
+    "grykin": "Gray Kingbird",
+    "sctfly": "Scissor-tailed Flycatcher",
+    "fotfly": "Fork-tailed Flycatcher",
+    
+    # Vireos
+    "whevir": "White-eyed Vireo",
+    "belvir": "Bell's Vireo",
+    "yetvir": "Yellow-throated Vireo",
+    "buhvir": "Blue-headed Vireo",
+    "phivir": "Philadelphia Vireo",
+    "warvir": "Warbling Vireo",
+    "reevir1": "Red-eyed Vireo",
+    
+    # Shrikes
+    "logshr": "Loggerhead Shrike",
+    "norshr4": "Northern Shrike",
+    
+    # Jays and Crows
+    "blujay": "Blue Jay",
+    "wooscj2": "Woodhouse's Scrub-Jay",
+    "bkbmag1": "Black-billed Magpie",
+    "amecro": "American Crow",
+    "fiscro": "Fish Crow",
+    "comrav": "Common Raven",
+    
+    # Chickadees and Titmice
+    "carchi": "Carolina Chickadee",
+    "bkcchi": "Black-capped Chickadee",
+    "x00195": "Black-capped x Carolina Chickadee (hybrid)",
+    "borchi2": "Boreal Chickadee",
+    "tuftit": "Tufted Titmouse",
+    
+    # Larks
+    "horlar": "Horned Lark",
+    
+    # Swallows
+    "banswa": "Bank Swallow",
+    "treswa": "Tree Swallow",
+    "purmar": "Purple Martin",
+    "nrwswa": "Northern Rough-winged Swallow",
+    "barswa": "Barn Swallow",
+    "cliswa": "Cliff Swallow",
+    "cavswa": "Cave Swallow",
+    
+    # Kinglets
+    "ruckin": "Ruby-crowned Kinglet",
+    "gockin": "Golden-crowned Kinglet",
+    
+    # Nuthatches
+    "whbnut": "White-breasted Nuthatch",
+    "rebnut": "Red-breasted Nuthatch",
+    
+    # Creepers
+    "brncre": "Brown Creeper",
+    
+    # Gnatcatchers
+    "buggna": "Blue-gray Gnatcatcher",
+    
+    # Wrens
+    "rocwre": "Rock Wren",
+    "houwre": "House Wren",
+    "winwre3": "Winter Wren",
+    "sedwre1": "Sedge Wren",
+    "marwre": "Marsh Wren",
+    "carwre": "Carolina Wren",
+    "bewwre": "Bewick's Wren",
+    
+    # Starlings
+    "eursta": "European Starling",
+    
+    # Catbirds and Mockingbirds
+    "grycat": "Gray Catbird",
+    "brnthr": "Brown Thrasher",
+    "sagthr": "Sage Thrasher",
+    "normoc": "Northern Mockingbird",
+    
+    # Thrushes
+    "easblu": "Eastern Bluebird",
+    "moublu": "Mountain Bluebird",
+    "towsol": "Townsend's Solitaire",
+    "varthr": "Varied Thrush",
+    "veery": "Veery",
+    "gycthr": "Gray-cheeked Thrush",
+    "swathr": "Swainson's Thrush",
+    "herthr": "Hermit Thrush",
+    "woothr": "Wood Thrush",
+    "amerob": "American Robin",
+    
+    # Old World Flycatchers
+    "norwhe": "Northern Wheatear",
+    
+    # Waxwings
+    "bohwax": "Bohemian Waxwing",
+    "cedwax": "Cedar Waxwing",
+    
+    # Finches
+    "zebfin2": "Zebra Finch",
+    "lavwax": "Lavender Waxbill",
+    "houspa": "House Sparrow",
+    "eutspa": "Eurasian Tree Sparrow",
+    "x00754": "House x Eurasian Tree Sparrow (hybrid)",
+    "amepip": "American Pipit",
+    "comcha": "Common Chaffinch",
+    "brambl": "Brambling",
+    "evegro": "Evening Grosbeak",
+    "pingro": "Pine Grosbeak",
+    "houfin": "House Finch",
+    "purfin": "Purple Finch",
+    "eurgre1": "European Greenfinch",
+    "redpol1": "Common Redpoll",
+    "redcro": "Red Crossbill",
+    "whwcro": "White-winged Crossbill",
+    "eurgol": "European Goldfinch",
+    "pinsis": "Pine Siskin",
+    "amegfi": "American Goldfinch",
+    
+    # Longspurs and Snow Buntings
+    "laplon": "Lapland Longspur",
+    "chclon": "Chestnut-collared Longspur",
+    "smilon": "Smith's Longspur",
+    "snobun": "Snow Bunting",
+    
+    # Sparrows
+    "casspa": "Cassin's Sparrow",
+    "bacspa": "Bachman's Sparrow",
+    "graspa": "Grasshopper Sparrow",
+    "chispa": "Chipping Sparrow",
+    "clcspa": "Clay-colored Sparrow",
+    "fiespa": "Field Sparrow",
+    "larspa": "Lark Sparrow",
+    "larbun": "Lark Bunting",
+    "amtspa": "American Tree Sparrow",
+    "foxspa": "Fox Sparrow",
+    "daejun": "Dark-eyed Junco",
+    "whcspa": "White-crowned Sparrow",
+    "gocspa": "Golden-crowned Sparrow",
+    "harspa": "Harris's Sparrow",
+    "whtspa": "White-throated Sparrow",
+    "x00039": "White-throated x White-crowned Sparrow (hybrid)",
+    "vesspa": "Vesper Sparrow",
+    "lecspa": "LeConte's Sparrow",
+    "nstspa": "Nelson's Sparrow",
+    "savspa": "Savannah Sparrow",
+    "henspa": "Henslow's Sparrow",
+    "sonspa": "Song Sparrow",
+    "linspa": "Lincoln's Sparrow",
+    "swaspa": "Swamp Sparrow",
+    
+    # Towhees
+    "gnttow": "Green-tailed Towhee",
+    "spotow": "Spotted Towhee",
+    "eastow": "Eastern Towhee",
+    
+    # Yellow-breasted Chat
+    "yebcha": "Yellow-breasted Chat",
+    
+    # Blackbirds and Orioles
+    "yehbla": "Yellow-headed Blackbird",
+    "boboli": "Bobolink",
+    "wesmea": "Western Meadowlark",
+    "easmea": "Eastern Meadowlark",
+    "orcori": "Orchard Oriole",
+    "bulori": "Bullock's Oriole",
+    "audori": "Audubon's Oriole",
+    "balori": "Baltimore Oriole",
+    "rewbla": "Red-winged Blackbird",
+    "bnhcow": "Bronzed Cowbird",
+    "rusbla": "Rusty Blackbird",
+    "brebla": "Brewer's Blackbird",
+    "comgra": "Common Grackle",
+    "grtgra": "Great-tailed Grackle",
+    
+    # Wood-Warblers
+    "ovenbi1": "Ovenbird",
+    "woewar1": "Worm-eating Warbler",
+    "louwat": "Louisiana Waterthrush",
+    "norwat": "Northern Waterthrush",
+    "gowwar": "Golden-winged Warbler",
+    "buwwar": "Blue-winged Warbler",
+    "x00669": "Golden-winged x Blue-winged Warbler (hybrid)",
+    "brewar": "Brewster's Warbler",
+    "lawwar": "Lawrence's Warbler",
+    "bawwar": "Black-and-white Warbler",
+    "prowar": "Prothonotary Warbler",
+    "swawar": "Swainson's Warbler",
+    "tenwar": "Tennessee Warbler",
+    "orcwar": "Orange-crowned Warbler",
+    "naswar": "Nashville Warbler",
+    "conwar": "Connecticut Warbler",
+    "mouwar": "Mourning Warbler",
+    "kenwar": "Kentucky Warbler",
+    "comyel": "Common Yellowthroat",
+    "hoowar": "Hooded Warbler",
+    "amered": "American Redstart",
+    "kirwar": "Kirtland's Warbler",
+    "camwar": "Cape May Warbler",
+    "cerwar": "Cerulean Warbler",
+    "norpar": "Northern Parula",
+    "x00711": "Northern x Tropical Parula (hybrid)",
+    "magwar": "Magnolia Warbler",
+    "babwar": "Bay-breasted Warbler",
+    "bkbwar": "Blackburnian Warbler",
+    "yelwar": "Yellow Warbler",
+    "chswar": "Chestnut-sided Warbler",
+    "bkpwar": "Blackpoll Warbler",
+    "btbwar": "Black-throated Blue Warbler",
+    "palwar": "Palm Warbler",
+    "pinwar": "Pine Warbler",
+    "yerwar": "Yellow-rumped Warbler",
+    "yetwar": "Yellow-throated Warbler",
+    "prawar": "Prairie Warbler",
+    "towwar": "Townsend's Warbler",
+    "btnwar": "Black-throated Green Warbler",
+    "canwar": "Canada Warbler",
+    "wlswar": "Wilson's Warbler",
+    
+    # Cardinals and Allies
+    "sumtan": "Summer Tanager",
+    "scatan": "Scarlet Tanager",
+    "westan": "Western Tanager",
+    "norcar": "Northern Cardinal",
+    "robgro": "Rose-breasted Grosbeak",
+    "bkhgro": "Black-headed Grosbeak",
+    "blugrb1": "Blue Grosbeak",
+    "lazbun": "Lazuli Bunting",
+    "indbun": "Indigo Bunting",
+    "paibun": "Painted Bunting",
+    "dickci": "Dickcissel"
+}
+
+# Example usage:
+# bird_name = indiana_birds_mapping["blujay"]  # Returns "Blue Jay"
+# 
+# To get eBird image URL:
+# ebird_code = "blujay"
+# image_url = f"https://ebird.org/species/{ebird_code}/"
+#
+# You can also save this as a JSON file:
+# import json
+# with open("indiana_birds_mapping.json", "w") as f:
+#     json.dump(indiana_birds_mapping, f, indent=2)
